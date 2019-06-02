@@ -3719,7 +3719,7 @@
                   "in" : "query"
                },
                {
-                  "description" : "\nA comma-separated list of SHA1s of the commits that should\nbe the parents of the newly created commit.\n\nWhen omitted, the new commit will inherit from and become\na child of the main branch's tip/HEAD commit.\n\nWhen more than one SHA1 is provided, the first SHA1\nidentifies the commit from which the content will be\ninherited.\n\nWhen more than 2 parents are provided on a Mercurial repo,\na 400 is returned as Mercurial does not support \"octopus\nmerges\".",
+                  "description" : "\nA comma-separated list of SHA1s of the commits that should\nbe the parents of the newly created commit.\n\nWhen omitted, the new commit will inherit from and become\na child of the main branch's tip/HEAD commit.\n\nWhen more than one SHA1 is provided, the first SHA1\nidentifies the commit from which the content will be\ninherited.\n\nWhen more than 2 parents are provided on a Mercurial repo,\na 400 is returned as Mercurial does not support octopus merges.",
                   "type" : "string",
                   "in" : "query",
                   "required" : false,
@@ -15799,26 +15799,9 @@
                "$ref" : "#/definitions/object"
             },
             {
-               "properties" : {
-                  "pattern" : {
-                     "description" : "The name of the matching pipeline definition.",
-                     "type" : "string"
-                  },
-                  "type" : {
-                     "type" : "string",
-                     "description" : "The type of selector.",
-                     "enum" : [
-                        "branches",
-                        "tags",
-                        "bookmarks",
-                        "default",
-                        "custom"
-                     ]
-                  }
-               },
-               "additionalProperties" : true,
-               "type" : "object",
-               "description" : "A representation of the selector that was used to identify the pipeline in the YML file."
+               "description" : "A representation of the selector that was used to identify the pipeline in the YML file. branches, tags, bookmarks, default, custom",
+               "type" : "string",
+               "additionalProperties" : true
             }
          ]
       },

@@ -50,7 +50,10 @@ openApiGenerate {
   generatePom: "false"
  ]
 }
+
+compileJava.dependsOn 'openApiGenerate'
+
 googleJavaFormat {
   include '**/*.java'
-  exclude 'src/gen/java/src/gen/**/*.java'
+  exclude 'src/gen/**/*.java'
 }
