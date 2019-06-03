@@ -5,9 +5,6 @@
 
 REST API generated from the `swagger.json` spec at https://api.bitbucket.org/swagger.json
 
-**Note:** `swagger.json` is committed in the repo! Because I needed some minor adjustments to get code generation working:
-
- * Removed some chars from description. `Mercurial does not support \"octopus\nmerges\"`
- * Changed `pipeline_selector` to `string` because of conflict with `getType` in `Object`.
+**Note:** `swagger.json` is committed in the repo! Because I needed some minor adjustments to get code generation working. See commit log.
 
 **Note:** JAX-RS is just an API! You will need an implementation to create a client. Example [here](https://github.com/tomasbjerre/violation-comments-to-bitbucket-cloud-lib). See: https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services
