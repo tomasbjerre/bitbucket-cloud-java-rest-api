@@ -23,9 +23,9 @@ apply plugin: 'org.openapi.generator'
 dependencies {
  compile 'io.swagger:swagger-annotations:1.5.3'
  compile 'javax.ws.rs:javax.ws.rs-api:2.1.1'
- compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.8.9'
- compile 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.8.9'
- compile 'javax.validation:validation-api:1.1.0.Final'
+ compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.9'
+ compile 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.9'
+ compile 'javax.validation:validation-api:2.0.1.Final'
 }
 
 sourceSets {
@@ -47,7 +47,8 @@ openApiGenerate {
  modelPackage = "se.bjurr.bitbucketcloud.gen.model"
  systemProperties = [
   interfaceOnly: "true",
-  generatePom: "false"
+  generatePom: "false",
+  useJackson: "true"
  ]
 }
 
