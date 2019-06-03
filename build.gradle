@@ -40,7 +40,7 @@ sourceSets {
 openApiGenerate {
  generatorName = "jaxrs-spec"
  skipOverwrite = false
- inputSpec = "$rootDir/swagger.json".toString()
+ inputSpec = "$rootDir/swagger.yml".toString()
  validateSpec = false
  outputDir = "$rootDir".toString()
  apiPackage = "se.bjurr.bitbucketcloud.gen.api"
