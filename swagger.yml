@@ -3012,7 +3012,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/paginated_pullrequests'
+                $ref: '#/components/schemas/paginated_pullrequests_commits'
           description: Ok.
       security:
       - oauth2:
@@ -17895,6 +17895,30 @@ components:
           description: Total number of objects in the response. This is an optional
             element that is not provided in all responses, as it can be expensive
             to compute.
+          minimum: 0
+          type: integer
+      type: object
+    paginated_pullrequests_commits:
+      properties:
+        next:
+          format: uri
+          type: string
+        pagelen:
+          minimum: 1
+          type: integer
+        page:
+          minimum: 1
+          type: integer
+        previous:
+          format: uri
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/commit'
+          minItems: 0
+          type: array
+          uniqueItems: true
+        size:
           minimum: 0
           type: integer
       type: object
