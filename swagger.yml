@@ -986,7 +986,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pullrequest_comment'
+                $ref: '#/components/schemas/paginated_pullrequest_comments'
           description: The comment.
         403:
           content:
@@ -1037,7 +1037,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/pullrequest_comment'
+              $ref: '#/components/schemas/comment'
         description: The contents of the updated comment.
         required: true
       responses:
@@ -1045,7 +1045,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pullrequest_comment'
+                $ref: '#/components/schemas/comment'
           description: The updated comment.
         403:
           content:
@@ -10360,7 +10360,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/pullrequest_comment'
+              $ref: '#/components/schemas/comment'
         description: The comment object.
         required: true
       responses:
@@ -10368,7 +10368,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/pullrequest_comment'
+                $ref: '#/components/schemas/comment'
           description: The newly created comment.
           headers:
             Location:
@@ -20959,14 +20959,6 @@ components:
         - kind
         - pattern
         type: object
-    pullrequest_comment:
-      allOf:
-      - $ref: '#/components/schemas/comment'
-      - description: A pullrequest comment.
-        properties:
-          pullrequest:
-            $ref: '#/components/schemas/pullrequest'
-        type: object
     deployment_state_completed_status_successful:
       allOf:
       - $ref: '#/components/schemas/deployment_state_completed_status'
@@ -21453,6 +21445,22 @@ components:
           format: uri
           type: string
       type: object
+    comment_content:
+      properties:
+        markup:
+          description: The type of markup language the raw content is to be interpreted in.
+          enum:
+          - markdown
+          - creole
+          - plaintext
+          type: string
+        raw:
+          description: The text as it was typed by a user.
+          type: string
+        html:
+          description: The user's content rendered as HTML.
+          type: string
+        type: object
     comment:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -21508,22 +21516,7 @@ components:
           user:
             $ref: '#/components/schemas/user'
           content:
-            properties:
-              markup:
-                description: The type of markup language the raw content is to be
-                  interpreted in.
-                enum:
-                - markdown
-                - creole
-                - plaintext
-                type: string
-              raw:
-                description: The text as it was typed by a user.
-                type: string
-              html:
-                description: The user's content rendered as HTML.
-                type: string
-            type: object
+            $ref: '#/components/schemas/comment_content'
           deleted:
             type: boolean
           id:
@@ -21590,7 +21583,7 @@ components:
           type: integer
         values:
           items:
-            $ref: '#/components/schemas/pullrequest_comment'
+            $ref: '#/components/schemas/comment'
           minItems: 0
           type: array
           uniqueItems: true

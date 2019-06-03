@@ -5,6 +5,8 @@
 
 REST API generated from the `swagger.json` spec at https://api.bitbucket.org/swagger.json
 
-**Note:** `swagger.json` is committed in the repo! Because I needed some minor adjustments to get code generation working. See commit log.
+You may want to use [App Passwords](https://confluence.atlassian.com/bitbucket/app-passwords-828781300.html) for authentication.
+
+**Note:** `swagger.yml` is committed in the repo! Because some adjustments were needed to get code generation working. See commit log.
 
 **Note:** JAX-RS is just an API! You will need an implementation to create a client. Example [here](https://github.com/tomasbjerre/violation-comments-to-bitbucket-cloud-lib). See: https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services
