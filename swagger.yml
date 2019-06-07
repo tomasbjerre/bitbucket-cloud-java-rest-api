@@ -21461,6 +21461,22 @@ components:
           description: The user's content rendered as HTML.
           type: string
         type: object
+    comment_inline:
+      properties:
+        path:
+          description: The path of the file this comment is anchored to.
+          type: string
+        from:
+          description: The comment's anchor line in the old version of the file.
+          minimum: 1
+          type: integer
+        to:
+          description: The comment's anchor line in the new version of the file.
+          minimum: 1
+          type: integer
+        required:
+          - path
+        type: object
     comment:
       allOf:
       - $ref: '#/components/schemas/object'
@@ -21496,21 +21512,7 @@ components:
                 type: object
             type: object
           inline:
-            properties:
-              path:
-                description: The path of the file this comment is anchored to.
-                type: string
-              from:
-                description: The comment's anchor line in the old version of the file.
-                minimum: 1
-                type: integer
-              to:
-                description: The comment's anchor line in the new version of the file.
-                minimum: 1
-                type: integer
-            required:
-            - path
-            type: object
+            $ref: '#/components/schemas/comment_inline'
           parent:
             $ref: '#/components/schemas/comment'
           user:
