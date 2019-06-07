@@ -3321,7 +3321,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         200:
           content:
@@ -3477,7 +3477,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       requestBody:
         content:
           application/json:
@@ -10296,7 +10296,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         200:
           content:
@@ -10355,7 +10355,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       requestBody:
         content:
           application/json:
@@ -10501,7 +10501,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       - description: |
           This can either be the repository slug or the UUID of the repository,
           surrounded by curly-braces, for example: `{repository UUID}`.
@@ -12998,7 +12998,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         200:
           content: {}
@@ -13535,7 +13535,7 @@ paths:
         name: pull_request_id
         required: true
         schema:
-          type: integer
+          type: string
       responses:
         200:
           content:
