@@ -13538,7 +13538,10 @@ paths:
           type: integer
       responses:
         200:
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paginated_activities'
           description: The pull request activity log
         401:
           content: {}
@@ -20748,6 +20751,31 @@ components:
             pattern: '[0-9a-f]{7,}?'
             type: string
         type: object
+    activity:
+      properties:
+        comment:
+          $ref: '#/components/schemas/comment'
+    paginated_activities:
+      description: A paged list of activities
+      properties:
+        page:
+          type: integer
+        previous:
+          format: uri
+          type: string
+        pagelen:
+          type: integer
+        size:
+          type: integer
+        next:
+          format: uri
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/activity'
+          minItems: 0
+          type: array
+      type: object
     paginated_pipelines:
       description: A paged list of pipelines
       example:
