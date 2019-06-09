@@ -9288,7 +9288,10 @@ paths:
           type: boolean
       responses:
         200:
-          content: {}
+          content:
+            text/plain:
+              schema:
+                type: string
           description: The raw diff
         555:
           content:
