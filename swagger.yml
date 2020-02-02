@@ -104,7 +104,7 @@ tags:
     progressed in their deployment pipeline.
   name: deployments
 paths:
-  /repositories/{username}/{repo_slug}/branching-model:
+  /repositories/{workspace}/{repo_slug}/branching-model:
     get:
       description: |-
         Return the branching model as applied to the repository. This view is
@@ -230,7 +230,7 @@ paths:
       - branching_model
       x-tags:
       - tag: branching_model
-  /repositories/{username}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}:
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/properties/{app_key}/{property_name}:
     delete:
       description: Delete an application property value stored against a commit.
       operationId: deleteCommitHostedPropertyValue
@@ -407,7 +407,7 @@ paths:
       - users
       x-tags:
       - tag: users
-  /repositories/{username}/{repo_slug}/downloads/{filename}:
+  /repositories/{workspace}/{repo_slug}/downloads/{filename}:
     delete:
       description: Deletes the specified download artifact from the repository.
       parameters:
@@ -483,7 +483,7 @@ paths:
       - downloads
       x-tags:
       - tag: downloads
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/changes:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes:
     get:
       description: |-
         Returns the list of all changes that have been made to the specified
@@ -790,7 +790,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/patch/{spec}:
+  /repositories/{workspace}/{repo_slug}/patch/{spec}:
     get:
       description: |-
         Produces a raw patch for a single commit (diffed against its first
@@ -908,7 +908,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}:
     delete:
       description: Deletes a specific pull request comment.
       parameters:
@@ -1069,7 +1069,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pullrequest_id}/properties/{app_key}/{property_name}:
     delete:
       description: Delete an application property value stored against a pull request.
       operationId: deletePullRequestHostedPropertyValue
@@ -1196,7 +1196,7 @@ paths:
       - properties
       x-tags:
       - tag: properties
-  /repositories/{username}/{repo_slug}/issues:
+  /repositories/{workspace}/{repo_slug}/issues:
     get:
       description: Returns the issues in the issue tracker.
       parameters:
@@ -1317,7 +1317,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/downloads:
+  /repositories/{workspace}/{repo_slug}/downloads:
     get:
       description: Returns a list of download links associated with the repository.
       parameters:
@@ -1386,7 +1386,7 @@ paths:
       - downloads
       x-tags:
       - tag: downloads
-  /repositories/{username}/{repo_slug}/deploy-keys:
+  /repositories/{workspace}/{repo_slug}/deploy-keys:
     get:
       description: |-
         Returns all deploy-keys belonging to a repository.
@@ -1555,35 +1555,35 @@ paths:
       - deploy
       x-tags:
       - tag: deploy
-  /repositories/{username}/{repo_slug}/commits:
+  /repositories/{workspace}/{repo_slug}/commits:
     get:
       description: |-
         These are the repository's commits. They are paginated and returned
         in reverse chronological order, similar to the output of `git log` and
         `hg log`. Like these tools, the DAG can be filtered.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/
+        ## GET /repositories/{workspace}/{repo_slug}/commits/
 
         Returns all commits in the repo in topological order (newest commit
         first). All branches and tags are included (similar to
         `git log --all` and `hg log`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/master
 
         Returns all commits on rev `master` (similar to `git log master`,
         `hg log master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/dev?exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/dev?exclude=master
 
         Returns all commits on ref `dev`, except those that are reachable on
         `master` (similar to `git log dev ^master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?exclude=master
 
         Returns all commits in the repo that are not on master
         (similar to `git log --all ^master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?include=foo&include=bar&exclude=fu&exclude=fubar
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?include=foo&include=bar&exclude=fu&exclude=fubar
 
         Returns all commits that are on refs `foo` or `bar`, but not on `fu` or
         `fubar` (similar to `git log foo bar ^fu ^fubar`).
@@ -1596,12 +1596,12 @@ paths:
         returned by this endpoint may no longer be a DAG, parent commits that
         do not modify the path will be omitted from the response.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?path=README.md&include=foo&include=bar&exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?path=README.md&include=foo&include=bar&exclude=master
 
         Returns all commits that are on refs `foo` or `bar`, but not on `master`
         that changed the file README.md.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?path=src/&include=foo&include=bar&exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?path=src/&include=foo&include=bar&exclude=master
 
         Returns all commits that are on refs `foo` or `bar`, but not on `master`
         that changed to a file in any file in the directory src or its children.
@@ -1649,7 +1649,7 @@ paths:
       - tag: commits
     post:
       description: |-
-        Identical to `GET /repositories/{username}/{repo_slug}/commits`,
+        Identical to `GET /repositories/{workspace}/{repo_slug}/commits`,
         except that POST allows clients to place the include and exclude
         parameters in the request body to avoid URL length issues.
 
@@ -1688,7 +1688,7 @@ paths:
       - commits
       x-tags:
       - tag: commits
-  /repositories/{username}/{repo_slug}/commit/{node}/approve:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/approve:
     delete:
       description: |-
         Redact the authenticated user's approval of the specified commit.
@@ -1829,7 +1829,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/branching-model/settings:
+  /repositories/{workspace}/{repo_slug}/branching-model/settings:
     get:
       description: |-
         Return the branching model configuration for a repository. The returned
@@ -2148,7 +2148,7 @@ paths:
       - search
       x-tags:
       - tag: search
-  /repositories/{username}/{repo_slug}/pipelines_config:
+  /repositories/{workspace}/{repo_slug}/pipelines_config:
     get:
       description: Retrieve the repository pipelines configuration.
       operationId: getRepositoryPipelineConfig
@@ -2356,7 +2356,7 @@ paths:
       - projects
       x-tags:
       - tag: projects
-  /repositories/{username}/{repo_slug}/hooks:
+  /repositories/{workspace}/{repo_slug}/hooks:
     get:
       description: Returns a paginated list of webhooks installed on this repository.
       parameters:
@@ -2797,7 +2797,7 @@ paths:
       - api_key: []
       tags: []
       x-tags: []
-  /repositories/{username}/{repo_slug}/refs/tags:
+  /repositories/{workspace}/{repo_slug}/refs/tags:
     get:
       description: |-
         Returns the tags in the repository.
@@ -2984,7 +2984,7 @@ paths:
       - users
       x-tags:
       - tag: users
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/commits:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits:
     get:
       description: |-
         Returns a paginated list of the pull request's commits.
@@ -3023,7 +3023,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}:
     delete:
       description: Delete a schedule.
       operationId: deleteRepositoryPipelineSchedule
@@ -3295,7 +3295,7 @@ paths:
       - hasMore: "true"
         tag: users
       - tag: webhooks
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}:
     get:
       description: Returns the specified pull request.
       parameters:
@@ -3619,7 +3619,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/vote:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/vote:
     delete:
       description: Retract your vote.
       parameters:
@@ -3782,7 +3782,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/log:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}/log:
     get:
       description: |-
         Retrieve the log file for a given step of a pipeline.
@@ -3970,14 +3970,14 @@ paths:
       - users
       x-tags:
       - tag: users
-  /repositories/{username}/{repo_slug}/src:
+  /repositories/{workspace}/{repo_slug}/src:
     get:
       description: |-
         This endpoint redirects the client to the directory listing of the
         root directory on the main branch.
 
         This is equivalent to directly hitting
-        [/2.0/repositories/{username}/{repo_slug}/src/{node}/{path}](src/%7Bnode%7D/%7Bpath%7D)
+        [/2.0/repositories/{workspace}/{repo_slug}/src/{node}/{path}](src/%7Bnode%7D/%7Bpath%7D)
         without having to know the name or SHA1 of the repo's main branch.
 
         To create new commits, [POST to this endpoint](#post)
@@ -4494,7 +4494,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/environments/{environment_uuid}/changes/:
+  /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}/changes/:
     post:
       description: Update an environment
       operationId: updateEnvironmentForRepository
@@ -4532,7 +4532,7 @@ paths:
       - deployments
       x-tags:
       - tag: deployments
-  /repositories/{username}/{repo_slug}/issues/import:
+  /repositories/{workspace}/{repo_slug}/issues/import:
     get:
       description: |-
         When using GET, this endpoint reports the status of the current import task. Request example:
@@ -4730,7 +4730,7 @@ paths:
       - hasMore: "true"
         tag: users
       - tag: teams
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}/remote-triggers/{trigger_key}:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/remote-triggers/{trigger_key}:
     put: {}
   /snippets/{username}/{encoded_id}/{node_id}/files/{path}:
     get:
@@ -4854,7 +4854,7 @@ paths:
       - repositories
       x-tags:
       - tag: repositories
-  /repositories/{username}/{repo_slug}/hooks/{uid}:
+  /repositories/{workspace}/{repo_slug}/hooks/{uid}:
     delete:
       description: |-
         Deletes the specified webhook subscription from the given
@@ -5007,7 +5007,7 @@ paths:
       - hasMore: "true"
         tag: repositories
       - tag: webhooks
-  /repositories/{username}/{repo_slug}/environments/:
+  /repositories/{workspace}/{repo_slug}/environments/:
     get:
       description: Find environments
       operationId: getEnvironmentsForRepository
@@ -5191,7 +5191,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/default-reviewers:
+  /repositories/{workspace}/{repo_slug}/default-reviewers:
     get:
       description: |-
         Returns the repository's default reviewers.
@@ -5229,7 +5229,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/approve:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/approve:
     delete:
       description: |-
         Redact the authenticated user's approval of the specified pull
@@ -5311,7 +5311,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/milestones/{milestone_id}:
+  /repositories/{workspace}/{repo_slug}/milestones/{milestone_id}:
     get:
       description: Returns the specified issue tracker milestone object.
       parameters:
@@ -5361,7 +5361,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/milestones:
+  /repositories/{workspace}/{repo_slug}/milestones:
     get:
       description: |-
         Returns the milestones that have been defined in the issue tracker.
@@ -5409,7 +5409,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/issues/export:
+  /repositories/{workspace}/{repo_slug}/issues/export:
     post:
       description: |-
         A POST request to this endpoint initiates a new background celery task that archives the repo's issues.
@@ -5491,7 +5491,7 @@ paths:
       - users
       x-tags:
       - tag: users
-  /repositories/{username}/{repo_slug}/refs/branches:
+  /repositories/{workspace}/{repo_slug}/refs/branches:
     get:
       description: |-
         Returns a list of all open branches within the specified repository.
@@ -6015,7 +6015,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/versions/{version_id}:
+  /repositories/{workspace}/{repo_slug}/versions/{version_id}:
     get:
       description: Returns the specified issue tracker version object.
       parameters:
@@ -6065,7 +6065,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/comments/{comment_id}:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments/{comment_id}:
     delete:
       description: Deletes the specified comment.
       parameters:
@@ -6234,7 +6234,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/attachments:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments:
     get:
       description: |-
         Returns all attachments for this issue.
@@ -6411,7 +6411,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/refs/tags/{name}:
+  /repositories/{workspace}/{repo_slug}/refs/tags/{name}:
     delete:
       description: |-
         Delete a tag in the specified repository.
@@ -6652,7 +6652,7 @@ paths:
       - refs
       x-tags:
       - tag: refs
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/{step_uuid}:
     get:
       description: Retrieve a given step of a pipeline.
       operationId: getPipelineStepForRepository
@@ -6699,7 +6699,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}:
+  /repositories/{workspace}/{repo_slug}:
     delete:
       description: |-
         Deletes the repository. This is an irreversible operation.
@@ -7329,7 +7329,7 @@ paths:
       - addon
       x-tags:
       - tag: addon
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}/stopPipeline:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/stopPipeline:
     post:
       description: Signal the stop of a pipeline and all of its steps that not have
         completed yet.
@@ -7374,7 +7374,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/pullrequests:
+  /repositories/{workspace}/{repo_slug}/pullrequests:
     get:
       description: |-
         Returns all pull requests on the specified repository.
@@ -7604,7 +7604,7 @@ paths:
       - addon
       x-tags:
       - tag: addon
-  /repositories/{username}/{repo_slug}/pipelines_config/ssh/key_pair:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/key_pair:
     delete:
       description: Delete the repository SSH key pair.
       operationId: deleteRepositoryPipelineKeyPair
@@ -7711,7 +7711,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/pipelines_config/variables/:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/variables/:
     get:
       description: Find repository level variables.
       operationId: getRepositoryPipelineVariables
@@ -7874,7 +7874,7 @@ paths:
       - api_key: []
       tags: []
       x-tags: []
-  /repositories/{username}/{repo_slug}/branch-restrictions/{id}:
+  /repositories/{workspace}/{repo_slug}/branch-restrictions/{id}:
     delete:
       description: Deletes an existing branch restriction rule.
       parameters:
@@ -8360,7 +8360,7 @@ paths:
       - ssh
       x-tags:
       - tag: ssh
-  /repositories/{username}/{repo_slug}/commit/{node}/comments/{comment_id}:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/comments/{comment_id}:
     get:
       description: Returns the specified commit comment.
       parameters:
@@ -8409,7 +8409,7 @@ paths:
       - commits
       x-tags:
       - tag: commits
-  /repositories/{username}/{repo_slug}/forks:
+  /repositories/{workspace}/{repo_slug}/forks:
     get:
       description: |-
         Returns a paginated list of all the forks of the specified
@@ -9220,7 +9220,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/diff/{spec}:
+  /repositories/{workspace}/{repo_slug}/diff/{spec}:
     get:
       description: |-
         Produces a raw, git-style diff for either a single commit (diffed
@@ -9314,7 +9314,7 @@ paths:
       - commits
       x-tags:
       - tag: commits
-  /repositories/{username}/{repo_slug}/deployments/:
+  /repositories/{workspace}/{repo_slug}/deployments/:
     get:
       description: Find deployments
       operationId: getDeploymentsForRepository
@@ -9342,7 +9342,7 @@ paths:
       - deployments
       x-tags:
       - tag: deployments
-  /repositories/{username}/{repo_slug}/commit/{node}/statuses/build:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/statuses/build:
     post:
       description: |-
         Creates a new build status against the specified commit.
@@ -9516,7 +9516,7 @@ paths:
       - hasMore: "true"
         tag: users
       - tag: webhooks
-  /repositories/{username}/{repo_slug}/properties/{app_key}/{property_name}:
+  /repositories/{workspace}/{repo_slug}/properties/{app_key}/{property_name}:
     delete:
       description: Delete an application property value stored against a repository.
       operationId: deleteRepositoryHostedPropertyValue
@@ -10055,7 +10055,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/diffstat:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diffstat:
     get:
       description: |-
         Redirects to the [repository diffstat](../../diffstat/%7Bspec%7D)
@@ -10091,7 +10091,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/attachments/{path}:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/attachments/{path}:
     delete:
       description: Deletes an attachment.
       parameters:
@@ -10263,7 +10263,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/comments:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments:
     get:
       description: |-
         Returns a paginated list of the pull request's comments.
@@ -10442,7 +10442,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/environments/{environment_uuid}:
+  /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}:
     delete: {}
     get:
       description: Retrieve an environment
@@ -10484,7 +10484,7 @@ paths:
       - deployments
       x-tags:
       - tag: deployments
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/statuses:
     get:
       description: |-
         Returns all statuses (e.g. build results) for the given pull
@@ -10542,7 +10542,7 @@ paths:
       - hasMore: "true"
         tag: pullrequests
       - tag: commitstatuses
-  /repositories/{username}/{repo_slug}/refs:
+  /repositories/{workspace}/{repo_slug}/refs:
     get:
       description: |-
         Returns the branches and tags in the repository.
@@ -10679,7 +10679,7 @@ paths:
       - users
       x-tags:
       - tag: users
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}:
     get:
       description: Retrieve a specified pipeline
       operationId: getPipelineForRepository
@@ -10857,7 +10857,7 @@ paths:
       - hasMore: "true"
         tag: teams
       - tag: webhooks
-  /repositories/{username}/{repo_slug}/pipelines_config/variables/{variable_uuid}:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/variables/{variable_uuid}:
     delete:
       description: Delete a repository level variable.
       operationId: deleteRepositoryPipelineVariable
@@ -10982,7 +10982,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/watchers:
+  /repositories/{workspace}/{repo_slug}/watchers:
     get:
       description: |-
         Returns a paginated list of all the watchers on the specified
@@ -11018,7 +11018,7 @@ paths:
       - repositories
       x-tags:
       - tag: repositories
-  /repositories/{username}/{repo_slug}/diffstat/{spec}:
+  /repositories/{workspace}/{repo_slug}/diffstat/{spec}:
     get:
       description: |-
         Returns the diff stat for the specified commit.
@@ -11178,7 +11178,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/commit/{node}/comments:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/comments:
     get:
       description: |-
         Returns the commit's comments.
@@ -11403,7 +11403,7 @@ paths:
       - addon
       x-tags:
       - tag: addon
-  /repositories/{username}:
+  /repositories/{workspace}:
     get:
       description: |-
         Returns a paginated list of all repositories owned by the specified
@@ -11466,7 +11466,7 @@ paths:
       - repositories
       x-tags:
       - tag: repositories
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/diff:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/diff:
     get:
       description: |-
         Redirects to the [repository diff](../../diff/%7Bspec%7D)
@@ -11502,7 +11502,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/components:
+  /repositories/{workspace}/{repo_slug}/components:
     get:
       description: |-
         Returns the components that have been defined in the issue tracker.
@@ -11795,7 +11795,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/merge:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/merge:
     post:
       description: Merges the pull request.
       parameters:
@@ -11944,7 +11944,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/commit/{node}/statuses:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/statuses:
     get:
       description: Returns all statuses (e.g. build results) for a specific commit.
       parameters:
@@ -12028,7 +12028,7 @@ paths:
       - hasMore: "true"
         tag: users
       - tag: teams
-  /repositories/{username}/{repo_slug}/commit/{node}/statuses/build/{key}:
+  /repositories/{workspace}/{repo_slug}/commit/{node}/statuses/build/{key}:
     get:
       description: Returns the specified build status for a commit.
       parameters:
@@ -12327,7 +12327,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/pipelines_config/schedules/:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/:
     get:
       description: Retrieve the configured schedules for the given repository.
       operationId: getRepositoryPipelineSchedules
@@ -12543,7 +12543,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/pipelines_config/ssh/known_hosts/:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts/:
     get:
       description: Find repository level known hosts.
       operationId: getRepositoryPipelineKnownHosts
@@ -12622,7 +12622,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/commit/{node}:
+  /repositories/{workspace}/{repo_slug}/commit/{node}:
     get:
       description: Returns the specified commit.
       parameters:
@@ -12671,7 +12671,7 @@ paths:
       - commits
       x-tags:
       - tag: commits
-  /repositories/{username}/{repo_slug}/src/{node}/{path}:
+  /repositories/{workspace}/{repo_slug}/src/{node}/{path}:
     get:
       description: |-
         This endpoints is used to retrieve the contents of a single file,
@@ -12971,7 +12971,7 @@ paths:
       - hasMore: "true"
         tag: source
       - tag: repositories
-  /repositories/{username}/{repo_slug}/pullrequests/activity:
+  /repositories/{workspace}/{repo_slug}/pullrequests/activity:
     get:
       description: |-
         Returns a paginated list of the pull request's activity log.
@@ -13069,7 +13069,7 @@ paths:
       - addon
       x-tags:
       - tag: addon
-  /repositories/{username}/{repo_slug}/deploy-keys/{key_id}:
+  /repositories/{workspace}/{repo_slug}/deploy-keys/{key_id}:
     delete:
       description: |-
         This deletes a deploy key from a repository.
@@ -13306,7 +13306,7 @@ paths:
       - deploy
       x-tags:
       - tag: deploy
-  /repositories/{username}/{repo_slug}/versions:
+  /repositories/{workspace}/{repo_slug}/versions:
     get:
       description: |-
         Returns the versions that have been defined in the issue tracker.
@@ -13412,7 +13412,7 @@ paths:
       - webhooks
       x-tags:
       - tag: webhooks
-  /repositories/{username}/{repo_slug}/components/{component_id}:
+  /repositories/{workspace}/{repo_slug}/components/{component_id}:
     get:
       description: Returns the specified issue tracker component object.
       parameters:
@@ -13508,7 +13508,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/activity:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity:
     get:
       description: |-
         Returns a paginated list of the pull request's activity log.
@@ -13564,7 +13564,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}/executions/:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/schedules/{schedule_uuid}/executions/:
     get:
       description: Retrieve the executions of a given schedule.
       operationId: getRepositoryPipelineScheduleExecutions
@@ -13598,7 +13598,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/watch:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/watch:
     delete:
       description: Stop watching this issue.
       parameters:
@@ -13775,35 +13775,35 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/commits/{revision}:
+  /repositories/{workspace}/{repo_slug}/commits/{revision}:
     get:
       description: |-
         These are the repository's commits. They are paginated and returned
         in reverse chronological order, similar to the output of `git log` and
         `hg log`. Like these tools, the DAG can be filtered.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/
+        ## GET /repositories/{workspace}/{repo_slug}/commits/
 
         Returns all commits in the repo in topological order (newest commit
         first). All branches and tags are included (similar to
         `git log --all` and `hg log`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/master
 
         Returns all commits on rev `master` (similar to `git log master`,
         `hg log master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/dev?exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/dev?exclude=master
 
         Returns all commits on ref `dev`, except those that are reachable on
         `master` (similar to `git log dev ^master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?exclude=master
 
         Returns all commits in the repo that are not on master
         (similar to `git log --all ^master`).
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?include=foo&include=bar&exclude=fu&exclude=fubar
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?include=foo&include=bar&exclude=fu&exclude=fubar
 
         Returns all commits that are on refs `foo` or `bar`, but not on `fu` or
         `fubar` (similar to `git log foo bar ^fu ^fubar`).
@@ -13816,12 +13816,12 @@ paths:
         returned by this endpoint may no longer be a DAG, parent commits that
         do not modify the path will be omitted from the response.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?path=README.md&include=foo&include=bar&exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?path=README.md&include=foo&include=bar&exclude=master
 
         Returns all commits that are on refs `foo` or `bar`, but not on `master`
         that changed the file README.md.
 
-        ## GET /repositories/{username}/{repo_slug}/commits/?path=src/&include=foo&include=bar&exclude=master
+        ## GET /repositories/{workspace}/{repo_slug}/commits/?path=src/&include=foo&include=bar&exclude=master
 
         Returns all commits that are on refs `foo` or `bar`, but not on `master`
         that changed to a file in any file in the directory src or its children.
@@ -13874,7 +13874,7 @@ paths:
       - tag: commits
     post:
       description: |-
-        Identical to `GET /repositories/{username}/{repo_slug}/commits`,
+        Identical to `GET /repositories/{workspace}/{repo_slug}/commits`,
         except that POST allows clients to place the include and exclude
         parameters in the request body to avoid URL length issues.
 
@@ -13918,7 +13918,7 @@ paths:
       - commits
       x-tags:
       - tag: commits
-  /repositories/{username}/{repo_slug}/pipelines_config/build_number:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/build_number:
     put:
       description: Update the next build number that should be assigned to a pipeline.
         The next build number that will be configured has to be strictly higher than
@@ -13968,7 +13968,7 @@ paths:
       - pipelines
       x-tags:
       - tag: pipelines
-  /repositories/{username}/{repo_slug}/branch-restrictions:
+  /repositories/{workspace}/{repo_slug}/branch-restrictions:
     get:
       description: |-
         Returns a paginated list of all branch restrictions on the
@@ -14235,7 +14235,7 @@ paths:
       - snippets
       x-tags:
       - tag: snippets
-  /repositories/{username}/{repo_slug}/deployments/{deployment_uuid}:
+  /repositories/{workspace}/{repo_slug}/deployments/{deployment_uuid}:
     get:
       description: Retrieve a deployment
       operationId: getDeploymentForRepository
@@ -14276,7 +14276,7 @@ paths:
       - deployments
       x-tags:
       - tag: deployments
-  /repositories/{username}/{repo_slug}/commit/{commit}/pullrequests:
+  /repositories/{workspace}/{repo_slug}/commit/{commit}/pullrequests:
     get:
       operationId: getPullrequestsForCommit
       parameters:
@@ -14383,7 +14383,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/issues/{issue_id}:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}:
     delete:
       description: |-
         Deletes the specified issue. This requires write access to the
@@ -14616,7 +14616,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/patch:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/patch:
     get:
       parameters:
       - in: path
@@ -14650,7 +14650,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip:
+  /repositories/{workspace}/{repo_slug}/issues/export/{repo_name}-issues-{task_id}.zip:
     get:
       description: |-
         This endpoint is used to poll for the progress of an issue export
@@ -14747,7 +14747,7 @@ paths:
       - api_key: []
       tags: []
       x-tags: []
-  /repositories/{username}/{repo_slug}/pipelines/:
+  /repositories/{workspace}/{repo_slug}/pipelines/:
     get:
       description: Find pipelines
       operationId: getPipelinesForRepository
@@ -14833,7 +14833,7 @@ paths:
         \ specifying the following for each variable: key, value, and whether it should\
         \ be secured or not (this field is optional and defaults to not secured).\n\
         \n### Example\n\n```\n$ curl -X POST -is -u username:password \\\n  -H 'Content-Type:\
-        \ application/json' \\\n https://api.bitbucket.org/2.0/repositories/{username}/{repo_slug}/pipelines/\
+        \ application/json' \\\n https://api.bitbucket.org/2.0/repositories/{workspace}/{repo_slug}/pipelines/\
         \ \\\n -d '\n  {\n    \"target\": {\n      \"type\": \"pipeline_ref_target\"\
         ,\n      \"ref_type\": \"branch\",\n      \"ref_name\": \"master\",\n    \
         \  \"selector\": {\n        \"type\": \"custom\",\n        \"pattern\": \"\
@@ -14969,7 +14969,7 @@ paths:
       - addon
       x-tags:
       - tag: addon
-  /repositories/{username}/{repo_slug}/pipelines_config/ssh/known_hosts/{known_host_uuid}:
+  /repositories/{workspace}/{repo_slug}/pipelines_config/ssh/known_hosts/{known_host_uuid}:
     delete:
       description: Delete a repository level known host.
       operationId: deleteRepositoryPipelineKnownHost
@@ -15126,7 +15126,7 @@ paths:
       - repositories
       x-tags:
       - tag: repositories
-  /repositories/{username}/{repo_slug}/default-reviewers/{target_username}:
+  /repositories/{workspace}/{repo_slug}/default-reviewers/{target_username}:
     delete:
       description: Removes a default reviewer from the repository.
       parameters:
@@ -15268,7 +15268,7 @@ paths:
       - pullrequests
       x-tags:
       - tag: pullrequests
-  /repositories/{username}/{repo_slug}/filehistory/{node}/{path}:
+  /repositories/{workspace}/{repo_slug}/filehistory/{node}/{path}:
     get:
       description: |-
         Returns a paginated list of commits that modified the specified file.
@@ -15392,7 +15392,7 @@ paths:
       - hasMore: "true"
         tag: source
       - tag: repositories
-  /repositories/{username}/{repo_slug}/pipelines/{pipeline_uuid}/steps/:
+  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/steps/:
     get:
       description: Find steps for the given pipeline.
       operationId: getPipelineStepsForRepository
@@ -15529,7 +15529,7 @@ paths:
       - snippet
       x-tags:
       - tag: snippet
-  /repositories/{username}/{repo_slug}/refs/branches/{name}:
+  /repositories/{workspace}/{repo_slug}/refs/branches/{name}:
     delete:
       description: |-
         Delete a branch in the specified repository.
@@ -16024,7 +16024,7 @@ paths:
       - projects
       x-tags:
       - tag: projects
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/comments:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/comments:
     get:
       description: |-
         Returns a paginated list of all comments that were made on the
@@ -16145,7 +16145,7 @@ paths:
       - issue_tracker
       x-tags:
       - tag: issue_tracker
-  /repositories/{username}/{repo_slug}/issues/{issue_id}/changes/{change_id}:
+  /repositories/{workspace}/{repo_slug}/issues/{issue_id}/changes/{change_id}:
     get:
       description: |-
         Returns the specified issue change object.
@@ -16297,7 +16297,7 @@ paths:
       - teams
       x-tags:
       - tag: teams
-  /repositories/{username}/{repo_slug}/pullrequests/{pull_request_id}/decline:
+  /repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/decline:
     post:
       description: Declines the pull request.
       parameters:
