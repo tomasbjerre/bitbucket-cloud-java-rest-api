@@ -183,7 +183,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -237,7 +237,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -279,7 +279,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -321,7 +321,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -412,7 +412,7 @@ paths:
       description: Deletes the specified download artifact from the repository.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -453,7 +453,7 @@ paths:
             Hello World
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -618,7 +618,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -723,7 +723,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -813,7 +813,7 @@ paths:
         content-type is `text/plain`.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -913,7 +913,7 @@ paths:
       description: Deletes a specific pull request comment.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -962,7 +962,7 @@ paths:
       description: Returns a specific pull request comment.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1014,7 +1014,7 @@ paths:
       description: Updates a specific pull request comment.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1076,7 +1076,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1118,7 +1118,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1160,7 +1160,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1205,7 +1205,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1256,7 +1256,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1322,7 +1322,7 @@ paths:
       description: Returns a list of download links associated with the repository.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1361,7 +1361,7 @@ paths:
         then the existing file will be replaced.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1431,7 +1431,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1513,7 +1513,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1619,7 +1619,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1660,7 +1660,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1703,7 +1703,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1755,7 +1755,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -1895,7 +1895,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2029,7 +2029,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2155,7 +2155,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2182,7 +2182,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2361,7 +2361,7 @@ paths:
       description: Returns a paginated list of webhooks installed on this repository.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2429,7 +2429,7 @@ paths:
         internal, non-routed address.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2817,7 +2817,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2907,7 +2907,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -2993,7 +2993,7 @@ paths:
         branch when the pull requests gets accepted.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3030,7 +3030,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3066,7 +3066,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3105,7 +3105,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3304,7 +3304,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3460,7 +3460,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3628,7 +3628,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3674,7 +3674,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3734,7 +3734,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3792,7 +3792,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -3983,7 +3983,7 @@ paths:
         To create new commits, [POST to this endpoint](#post)
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4156,7 +4156,7 @@ paths:
         subrepos / submodules.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4501,7 +4501,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4564,7 +4564,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4648,7 +4648,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4730,8 +4730,6 @@ paths:
       - hasMore: "true"
         tag: users
       - tag: teams
-  /repositories/{workspace}/{repo_slug}/pipelines/{pipeline_uuid}/remote-triggers/{trigger_key}:
-    put: {}
   /snippets/{username}/{encoded_id}/{node_id}/files/{path}:
     get:
       description: |-
@@ -4861,7 +4859,7 @@ paths:
         repository.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4910,7 +4908,7 @@ paths:
         repository.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -4961,7 +4959,7 @@ paths:
         * `events`
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5014,7 +5012,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5041,7 +5039,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5204,7 +5202,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5236,7 +5234,7 @@ paths:
         request.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5274,7 +5272,7 @@ paths:
       description: Approve the specified pull request as the authenticated user.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5320,7 +5318,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5374,7 +5372,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5427,7 +5425,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5753,7 +5751,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -5852,7 +5850,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6024,7 +6022,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6078,7 +6076,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6129,7 +6127,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6185,7 +6183,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6245,7 +6243,7 @@ paths:
         The files are always ordered by their upload date.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6297,7 +6295,7 @@ paths:
         then the existing file will be replaced.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6425,7 +6423,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6604,7 +6602,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6659,7 +6657,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6711,7 +6709,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6766,7 +6764,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -6909,7 +6907,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7046,7 +7044,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7337,7 +7335,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7392,7 +7390,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7513,7 +7511,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7611,7 +7609,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7643,7 +7641,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7677,7 +7675,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7718,7 +7716,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7745,7 +7743,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7883,7 +7881,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -7941,7 +7939,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -8007,7 +8005,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -8369,7 +8367,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -8420,7 +8418,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -8542,7 +8540,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9249,7 +9247,7 @@ paths:
         content-type is `text/plain`.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9321,7 +9319,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9364,7 +9362,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9523,7 +9521,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9559,7 +9557,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -9595,7 +9593,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10062,7 +10060,7 @@ paths:
         with the revspec that corresponds to the pull request.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10096,7 +10094,7 @@ paths:
       description: Deletes an attachment.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10150,7 +10148,7 @@ paths:
         As a result, the link should not be persisted, stored, or shared.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10282,7 +10280,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10341,7 +10339,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10443,14 +10441,13 @@ paths:
       x-tags:
       - tag: snippets
   /repositories/{workspace}/{repo_slug}/environments/{environment_uuid}:
-    delete: {}
     get:
       description: Retrieve an environment
       operationId: getEnvironmentForRepository
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10495,7 +10492,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10563,7 +10560,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10686,7 +10683,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10864,7 +10861,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10901,7 +10898,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10941,7 +10938,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -10993,7 +10990,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11073,7 +11070,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11193,7 +11190,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11251,7 +11248,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11423,7 +11420,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11473,7 +11470,7 @@ paths:
         with the revspec that corresponds to the pull request.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11515,7 +11512,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11800,7 +11797,7 @@ paths:
       description: Merges the pull request.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -11953,7 +11950,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12037,7 +12034,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12109,7 +12106,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12334,7 +12331,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12367,7 +12364,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12550,7 +12547,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12577,7 +12574,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12631,7 +12628,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12879,7 +12876,7 @@ paths:
         details.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -12984,7 +12981,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13086,7 +13083,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13165,7 +13162,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13255,7 +13252,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13319,7 +13316,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13421,7 +13418,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13521,7 +13518,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13571,7 +13568,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13607,7 +13604,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13666,7 +13663,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13726,7 +13723,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13839,7 +13836,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13885,7 +13882,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13927,7 +13924,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -13979,7 +13976,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14085,7 +14082,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14242,7 +14239,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14282,7 +14279,7 @@ paths:
       parameters:
       - description: The account; either the UUID in curly braces, or the account_id
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14394,7 +14391,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14450,7 +14447,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14532,7 +14529,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14620,7 +14617,7 @@ paths:
     get:
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14689,7 +14686,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14754,7 +14751,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14845,7 +14842,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -14976,7 +14973,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15013,7 +15010,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15053,7 +15050,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15135,7 +15132,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15184,7 +15181,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15232,7 +15229,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15324,7 +15321,7 @@ paths:
         by the commit made on 2011-05-16, and was previously named `README.txt`.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15399,7 +15396,7 @@ paths:
       parameters:
       - description: The account.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15547,7 +15544,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -15726,7 +15723,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -16045,7 +16042,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -16101,7 +16098,7 @@ paths:
           This can either be the username or the UUID of the user,
           surrounded by curly-braces, for example: `{user UUID}`.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -16158,7 +16155,7 @@ paths:
           surrounded by curly-braces, for example: `{account UUID}`. An account
           is either a team or user.
         in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
@@ -16302,7 +16299,7 @@ paths:
       description: Declines the pull request.
       parameters:
       - in: path
-        name: username
+        name: workspace
         required: true
         schema:
           type: string
