@@ -1,7 +1,6 @@
 # Bitbucket Cloud Java REST API
 [![Build Status](https://travis-ci.org/tomasbjerre/bitbucket-cloud-java-rest-api.svg?branch=master)](https://travis-ci.org/tomasbjerre/bitbucket-cloud-java-rest-api)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.bjurr.bitbucketcloud/bitbucket-cloud-java-rest-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.bjurr.bitbucketcloud/bitbucket-cloud-java-rest-api) 
-[![Bintray](https://api.bintray.com/packages/tomasbjerre/tomasbjerre/se.bjurr.bitbucketcloud%3Abitbucket-cloud-java-rest-api/images/download.svg) ](https://bintray.com/tomasbjerre/tomasbjerre/se.bjurr.bitbucketcloud%3Abitbucket-cloud-java-rest-api/_latestVersion)
 
 REST API generated from the `swagger.json` spec at https://api.bitbucket.org/swagger.json
 

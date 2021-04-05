@@ -1,24 +1,16 @@
 apply plugin: 'java'
 
-project.ext.tags = ['bitbucket-cloud']
-group = 'se.bjurr.bitbucketcloud'
-description = 'Rest client for Bitbucket CLoud'
-
 buildscript {
  repositories {
   mavenLocal()
   mavenCentral()
-  maven { url "https://jitpack.io" }
  }
  dependencies {
-  classpath 'com.github.tomasbjerre:gradle-scripts:master-SNAPSHOT'
-  classpath 'org.openapitools:openapi-generator-gradle-plugin:3.3.4'
+  classpath 'se.bjurr.gradle:gradle-scripts:2.+'
+  classpath 'org.openapitools:openapi-generator-gradle-plugin:5.1.0'
  }
 }
-apply from: project.buildscript.classLoader.getResource('java.gradle').toURI()
-apply from: project.buildscript.classLoader.getResource('changelog.gradle').toURI()
-apply from: project.buildscript.classLoader.getResource('release.gradle').toURI()
-apply plugin: 'org.openapi.generator'
+apply from: project.buildscript.classLoader.getResource('main.gradle').toURI()
 
 dependencies {
  compile 'io.swagger:swagger-annotations:1.5.3'
@@ -28,24 +20,19 @@ dependencies {
  compile 'javax.validation:validation-api:2.0.1.Final'
 }
 
-sourceSets {
- main {
-  java {
-   srcDir 'src/main/java'
-   srcDir 'src/gen/java'
-  }
- }
-}
+
+apply plugin: 'org.openapi.generator'
 
 openApiGenerate {
  generatorName = "jaxrs-spec"
  skipOverwrite = false
- inputSpec = "$rootDir/swagger.yml".toString()
+ inputSpec = "$rootDir/openapi.yml".toString()
  validateSpec = false
+ skipValidateSpec = true
  outputDir = "$rootDir".toString()
  apiPackage = "se.bjurr.bitbucketcloud.gen.api"
  modelPackage = "se.bjurr.bitbucketcloud.gen.model"
- systemProperties = [
+ configOptions = [
   interfaceOnly: "true",
   generatePom: "false",
   useJackson: "true"
@@ -54,7 +41,3 @@ openApiGenerate {
 
 compileJava.dependsOn 'openApiGenerate'
 
-googleJavaFormat {
-  include '**/*.java'
-  exclude 'src/gen/**/*.java'
-}
