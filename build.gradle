@@ -7,7 +7,7 @@ buildscript {
  }
  dependencies {
   classpath 'se.bjurr.gradle:gradle-scripts:2.+'
-  classpath 'org.openapitools:openapi-generator-gradle-plugin:5.1.0'
+  classpath 'org.openapitools:openapi-generator-gradle-plugin:5.4.0'
  }
 }
 apply from: project.buildscript.classLoader.getResource('main.gradle').toURI()
