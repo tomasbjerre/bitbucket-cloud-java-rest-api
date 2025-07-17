@@ -1,43 +1,54 @@
-apply plugin: 'java'
-
-buildscript {
- repositories {
-  mavenLocal()
-  mavenCentral()
- }
- dependencies {
-  classpath 'se.bjurr.gradle:gradle-scripts:2.+'
-  classpath 'org.openapitools:openapi-generator-gradle-plugin:5.4.0'
- }
+plugins {
+	id "se.bjurr.gradle.conventional-release" version "0.+"
+	id "se.bjurr.gradle.java-convention" version "0.+"
+	id "se.bjurr.gradle.update-versions" version "0.+"
+	id "org.openapi.generator" version "7.14.0"
 }
-apply from: project.buildscript.classLoader.getResource('main.gradle').toURI()
 
 dependencies {
- compile 'io.swagger:swagger-annotations:1.5.3'
- compile 'javax.ws.rs:javax.ws.rs-api:2.1.1'
- compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.9'
- compile 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.9'
- compile 'javax.validation:validation-api:2.0.1.Final'
+	api 'io.swagger:swagger-annotations:1.6.16'
+	api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
+	api 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.19.1'
+	api 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.19.1'
+	api 'jakarta.validation:jakarta.validation-api:3.1.1'
+	api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
 
-
-apply plugin: 'org.openapi.generator'
-
 openApiGenerate {
- generatorName = "jaxrs-spec"
- skipOverwrite = false
- inputSpec = "$rootDir/openapi.yml".toString()
- validateSpec = false
- skipValidateSpec = true
- outputDir = "$rootDir".toString()
- apiPackage = "se.bjurr.bitbucketcloud.gen.api"
- modelPackage = "se.bjurr.bitbucketcloud.gen.model"
- configOptions = [
-  interfaceOnly: "true",
-  generatePom: "false",
-  useJackson: "true"
- ]
+	generatorName = "jaxrs-spec"
+	skipOverwrite = false
+	inputSpec = "$rootDir/openapi.yml".toString()
+	validateSpec = false
+	skipValidateSpec = true
+	outputDir = "$rootDir".toString()
+	apiPackage = "se.bjurr.bitbucketcloud.gen.api"
+	modelPackage = "se.bjurr.bitbucketcloud.gen.model"
+	configOptions = [
+		interfaceOnly: "true",
+		generatePom: "false",
+		useJackson: "true",
+		useJakartaEe: "true"
+	]
 }
 
 compileJava.dependsOn 'openApiGenerate'
 
+tasks.named("spotlessGroovyGradle") {
+	dependsOn(tasks.named("openApiGenerate"))
+}
+
+tasks.named("spotlessJava") {
+	dependsOn(tasks.named("openApiGenerate"))
+}
+
+tasks.named("spotlessJson") {
+	dependsOn(tasks.named("openApiGenerate"))
+}
+
+tasks.named("sourcesJar") {
+	dependsOn(tasks.named("openApiGenerate"))
+}
+
+tasks.named("javadocJar") {
+	dependsOn(tasks.named("openApiGenerate"))
+}
