@@ -1,15 +1,21 @@
 plugins {
-	id "se.bjurr.gradle.conventional-release" version "0.+"
-	id "se.bjurr.gradle.java-convention" version "0.+"
-	id "se.bjurr.gradle.update-versions" version "0.+"
-	id "org.openapi.generator" version "7.14.0"
+	id "se.bjurr.gradle.bundle-jar" version "1.3.10"
+	id "org.openapi.generator" version "7.16.0"
+}
+
+javaExtension {
+	javaVersion = 17
+}
+
+formatting {
+	formattingExcludedPatterns = ["src/gen/java/**"]
 }
 
 dependencies {
 	api 'io.swagger:swagger-annotations:1.6.16'
 	api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
-	api 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.19.1'
-	api 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.19.1'
+	api "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.20.0"
+	api "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.20.0"
 	api 'jakarta.validation:jakarta.validation-api:3.1.1'
 	api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
@@ -31,18 +37,14 @@ openApiGenerate {
 	]
 }
 
+processTestResources.dependsOn 'openApiGenerate'
 compileJava.dependsOn 'openApiGenerate'
+compileGroovy.dependsOn 'openApiGenerate'
 
-tasks.named("spotlessGroovyGradle") {
-	dependsOn(tasks.named("openApiGenerate"))
-}
-
-tasks.named("spotlessJava") {
-	dependsOn(tasks.named("openApiGenerate"))
-}
-
-tasks.named("spotlessJson") {
-	dependsOn(tasks.named("openApiGenerate"))
+afterEvaluate {
+	tasks.findByName("spotlessGroovyGradle")?.dependsOn("openApiGenerate")
+	tasks.findByName("spotlessJava")?.dependsOn("openApiGenerate")
+	tasks.findByName("spotlessJson")?.dependsOn("openApiGenerate")
 }
 
 tasks.named("sourcesJar") {
