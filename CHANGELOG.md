@@ -1,3 +1,25 @@
+## 3.0.0 (2026-09-14)
+
+### Breaking changes
+
+-  jackson 3 ([5f46a](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/5f46ac4aead5d65) Tomas Bjerre)  
+
+### Dependency updates
+
+- gradle 9 ([80415](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/80415d0632b685d) Tomas Bjerre)  
+### Other changes
+
+**Update convention plugin and dependency versions**
+
+* Bump se.bjurr.gradle.bundle-jar to 2.1.2, org.openapi.generator to 
+* 7.25.0, and jackson-datatype-joda/jackson-jaxrs-json-provider to 
+* 2.22.2. 
+* Co-Authored-By: Claude Sonnet 5 &lt;noreply@anthropic.com&gt; 
+* Claude-Session: https://claude.ai/code/session_01JoSBbeMcQy1vjRJ5qMVno8 
+
+[50907](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/50907ab7d91d617) Tomas Bjerre *2026-09-13 19:38:35*
+
+
 ## 2.0.0 (2025-07-17)
 
 ### Breaking changes
