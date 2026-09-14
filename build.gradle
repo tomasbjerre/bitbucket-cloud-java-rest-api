@@ -14,8 +14,8 @@ formatting {
 dependencies {
 	api 'io.swagger:swagger-annotations:1.6.16'
 	api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
-	api "com.fasterxml.jackson.datatype:jackson-datatype-joda:2.22.2"
-	api "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.22.2"
+	api "tools.jackson.jaxrs:jackson-jaxrs-json-provider:3.2.2"
+	api "org.openapitools:jackson-databind-nullable:0.2.11"
 	api 'jakarta.validation:jakarta.validation-api:3.1.1'
 	api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
@@ -37,20 +37,45 @@ openApiGenerate {
 	]
 }
 
-processTestResources.dependsOn 'openApiGenerate'
-compileJava.dependsOn 'openApiGenerate'
-compileGroovy.dependsOn 'openApiGenerate'
+// openapi-generator's jaxrs-spec generator hardcodes the Jackson 2
+// "com.fasterxml.jackson.databind.annotation.JsonDeserialize" import for Set
+// properties and has no option to target Jackson 3's "tools.jackson" package
+// (https://github.com/OpenAPITools/openapi-generator/issues/22294). Rewrite it
+// in the generated sources so the generated models compile and deserialize
+// against the Jackson 3 api dependencies declared above.
+tasks.register('fixJackson3Imports') {
+	dependsOn 'openApiGenerate'
+	def genDir = "$rootDir/src/gen/java"
+	inputs.dir(genDir)
+	outputs.dir(genDir)
+	doLast {
+		fileTree(dir: genDir, include: '**/*.java').each { file ->
+			def text = file.text
+			def fixed = text.replace(
+					'import com.fasterxml.jackson.databind.annotation.JsonDeserialize;',
+					'import tools.jackson.databind.annotation.JsonDeserialize;'
+					)
+			if (fixed != text) {
+				file.text = fixed
+			}
+		}
+	}
+}
+
+processTestResources.dependsOn 'fixJackson3Imports'
+compileJava.dependsOn 'fixJackson3Imports'
+compileGroovy.dependsOn 'fixJackson3Imports'
 
 afterEvaluate {
-	tasks.findByName("spotlessGroovyGradle")?.dependsOn("openApiGenerate")
-	tasks.findByName("spotlessJava")?.dependsOn("openApiGenerate")
-	tasks.findByName("spotlessJson")?.dependsOn("openApiGenerate")
+	tasks.findByName("spotlessGroovyGradle")?.dependsOn("fixJackson3Imports")
+	tasks.findByName("spotlessJava")?.dependsOn("fixJackson3Imports")
+	tasks.findByName("spotlessJson")?.dependsOn("fixJackson3Imports")
 }
 
 tasks.named("sourcesJar") {
-	dependsOn(tasks.named("openApiGenerate"))
+	dependsOn(tasks.named("fixJackson3Imports"))
 }
 
 tasks.named("javadocJar") {
-	dependsOn(tasks.named("openApiGenerate"))
+	dependsOn(tasks.named("fixJackson3Imports"))
 }
