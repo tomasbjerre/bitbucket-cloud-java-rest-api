@@ -1,3 +1,25 @@
+## 3.1.0 (2026-09-14)
+
+### Features
+
+-  **ci**  add draft/publish release workflow ([4cd67](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/4cd67571586984c) Tomas Bjerre)  
+
+### Dependency updates
+
+- update gradle wrapper to 9.7.1 ([a482a](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/a482aa48efe4af9) Tomas Bjerre)  
+### Other changes
+
+**Superseded by centralized publish-draft-releases.yaml in .github**
+
+
+[04147](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/041474dd94047b7) Tomas Bjerre *2026-09-14 19:58:37*
+
+**Auto-publish pending draft releases weekly**
+
+
+[8207e](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/8207ee850ee31ff) Tomas Bjerre *2026-09-14 19:47:37*
+
+
 ## 3.0.0 (2026-09-14)
 
 ### Breaking changes
