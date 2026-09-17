@@ -62,20 +62,66 @@ tasks.register('fixJackson3Imports') {
 	}
 }
 
-processTestResources.dependsOn 'fixJackson3Imports'
-compileJava.dependsOn 'fixJackson3Imports'
-compileGroovy.dependsOn 'fixJackson3Imports'
+// The Bitbucket Cloud OpenAPI spec declares some properties that redeclare a
+// same-named property from a schema they're combined with via allOf - e.g.
+// "pipeline_selector.type" (an enum) vs. the polymorphic base "type"
+// discriminator (a string) it inherits from. The generator maps allOf to
+// Java inheritance without checking the overridden property's type is
+// covariant, producing generated code that doesn't compile. Patch those
+// specific spots rather than changing the JSON wire format.
+tasks.register('fixCovariantReturnTypeConflicts') {
+	dependsOn 'fixJackson3Imports'
+	def genDir = "$rootDir/src/gen/java/se/bjurr/bitbucketcloud/gen/model"
+	inputs.dir(genDir)
+	outputs.dir(genDir)
+	doLast {
+		[
+			// UserLinks/TeamLinks redeclare Account's "links" property with an
+			// unrelated type; making them extend AccountLinks (like the JSON
+			// schemas they're modeled after already do in spirit) satisfies
+			// Java's covariant-return-type rule for User/Team's getLinks().
+			(file("$genDir/UserLinks.java")): [
+				'public class UserLinks   {': 'public class UserLinks extends AccountLinks  {'
+			],
+			(file("$genDir/TeamLinks.java")): [
+				'public class TeamLinks   {': 'public class TeamLinks extends AccountLinks  {'
+			],
+			// PipelineSelector.type (its own TypeEnum) collides with the
+			// inherited ModelObject.type (the polymorphic discriminator,
+			// a String). Rename PipelineSelector's Java accessors only -
+			// @JsonProperty("type") is kept so the JSON key is unchanged.
+			(file("$genDir/PipelineSelector.java")): [
+				'public PipelineSelector type(TypeEnum type) {': 'public PipelineSelector selectorType(TypeEnum type) {',
+				'public TypeEnum getType() {'                  : 'public TypeEnum getSelectorType() {',
+				'public void setType(TypeEnum type) {'          : 'public void setSelectorType(TypeEnum type) {',
+			],
+		].each { targetFile, replacements ->
+			def text = targetFile.text
+			replacements.each { from, to ->
+				if (!text.contains(from)) {
+					throw new GradleException("Expected to find '${from}' in ${targetFile} - has the generator output changed?")
+				}
+				text = text.replace(from, to)
+			}
+			targetFile.text = text
+		}
+	}
+}
+
+processTestResources.dependsOn 'fixCovariantReturnTypeConflicts'
+compileJava.dependsOn 'fixCovariantReturnTypeConflicts'
+compileGroovy.dependsOn 'fixCovariantReturnTypeConflicts'
 
 afterEvaluate {
-	tasks.findByName("spotlessGroovyGradle")?.dependsOn("fixJackson3Imports")
-	tasks.findByName("spotlessJava")?.dependsOn("fixJackson3Imports")
-	tasks.findByName("spotlessJson")?.dependsOn("fixJackson3Imports")
+	tasks.findByName("spotlessGroovyGradle")?.dependsOn("fixCovariantReturnTypeConflicts")
+	tasks.findByName("spotlessJava")?.dependsOn("fixCovariantReturnTypeConflicts")
+	tasks.findByName("spotlessJson")?.dependsOn("fixCovariantReturnTypeConflicts")
 }
 
 tasks.named("sourcesJar") {
-	dependsOn(tasks.named("fixJackson3Imports"))
+	dependsOn(tasks.named("fixCovariantReturnTypeConflicts"))
 }
 
 tasks.named("javadocJar") {
-	dependsOn(tasks.named("fixJackson3Imports"))
+	dependsOn(tasks.named("fixCovariantReturnTypeConflicts"))
 }
