@@ -1,3 +1,18 @@
+## 3.2.3 (2026-09-17)
+
+### Bug Fixes
+
+-  restore missing diff/commits schemas and fix comment/Jackson 3 deserialization ([7b8b5](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/7b8b5d2deed435c) Tomas Bjerre)  
+
+### Other changes
+
+**Merge pull request #6 from tomasbjerre/fix/pull-request-activity-response-schema**
+
+* fix: correct pull request comment discriminator and Jackson 3 map deserialization 
+
+[64869](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/6486989146f185f) Tomas Bjerre *2026-09-17 19:48:58*
+
+
 ## 3.2.2 (2026-09-17)
 
 ### Bug Fixes
