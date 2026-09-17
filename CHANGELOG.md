@@ -1,3 +1,24 @@
+## 3.2.2 (2026-09-17)
+
+### Bug Fixes
+
+-  restore response schema for the pull request activity log endpoint ([473b2](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/473b2debf1a96e3) Tomas Bjerre)  
+
+### Other changes
+
+**Merge pull request #5 from tomasbjerre/fix/pull-request-activity-response-schema**
+
+* fix: restore response schema for the pull request activity log endpoint 
+
+[6725d](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/6725db857e4fd70) Tomas Bjerre *2026-09-17 19:05:39*
+
+**Merge pull request #4 from tomasbjerre/tomasbjerre-patch-1**
+
+* docs: readme 
+
+[7eaa8](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/7eaa8014cb8ad96) Tomas Bjerre *2026-09-17 18:44:52*
+
+
 ## 3.2.1 (2026-09-17)
 
 ### Bug Fixes
