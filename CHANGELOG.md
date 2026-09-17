@@ -1,3 +1,18 @@
+## 3.2.1 (2026-09-17)
+
+### Bug Fixes
+
+-  explicitly wire src/gen/java into the main source set ([8ad37](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/8ad375378463110) Tomas Bjerre)  
+
+### Other changes
+
+**Merge pull request #3 from tomasbjerre/fix/wire-generated-sources-explicitly**
+
+* fix: explicitly wire src/gen/java into the main source set 
+
+[a5300](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/a530081639f65c3) Tomas Bjerre *2026-09-17 18:39:27*
+
+
 ## 3.2.0 (2026-09-17)
 
 ### Features
