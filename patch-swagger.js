@@ -55,13 +55,106 @@ const activityPath =
   spec.paths[
     "/repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/activity"
   ];
-const okResponse = activityPath && activityPath.get && activityPath.get.responses["200"];
-if (okResponse && !okResponse.content) {
-  okResponse.content = {
+const activityOkResponse =
+  activityPath && activityPath.get && activityPath.get.responses["200"];
+if (activityOkResponse && !activityOkResponse.content) {
+  activityOkResponse.content = {
     "application/json": {
       schema: { $ref: "#/components/schemas/paginated_activities" },
     },
   };
 }
+
+// GET .../diff/{spec} - returns the raw unified diff as plain text, not JSON.
+// Same gap as the activity endpoint above: documented with a description
+// only, no content/schema, so the generator falls back to void.
+const diffPath = spec.paths["/repositories/{workspace}/{repo_slug}/diff/{spec}"];
+const diffOkResponse = diffPath && diffPath.get && diffPath.get.responses["200"];
+if (diffOkResponse && !diffOkResponse.content) {
+  diffOkResponse.content = { "text/plain": { schema: { type: "string" } } };
+}
+
+// GET .../pullrequests/{id}/commits - same gap again: genuinely returns a
+// paginated list of commits (the old, now-deprecated spec documented it),
+// but this spec's 200 response has no schema.
+if (!spec.components.schemas.paginated_pullrequests_commits) {
+  spec.components.schemas.paginated_pullrequests_commits = {
+    type: "object",
+    properties: {
+      next: { type: "string", format: "uri" },
+      pagelen: { type: "integer", minimum: 1 },
+      page: { type: "integer", minimum: 1 },
+      previous: { type: "string", format: "uri" },
+      values: {
+        type: "array",
+        minItems: 0,
+        uniqueItems: true,
+        items: { $ref: "#/components/schemas/commit" },
+      },
+      size: { type: "integer", minimum: 0 },
+    },
+  };
+}
+const commitsPath =
+  spec.paths[
+    "/repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/commits"
+  ];
+const commitsOkResponse =
+  commitsPath && commitsPath.get && commitsPath.get.responses["200"];
+if (commitsOkResponse && !commitsOkResponse.content) {
+  commitsOkResponse.content = {
+    "application/json": {
+      schema: { $ref: "#/components/schemas/paginated_pullrequests_commits" },
+    },
+  };
+}
+
+// The `object` schema declares the polymorphic discriminator
+// (`propertyName: "type"`) that every resource, including `comment` and its
+// subtypes like `pullrequest_comment`, inherits without an explicit
+// `mapping` - so the generator auto-registers each subtype under its own
+// schema name (e.g. "pullrequest_comment"). But Bitbucket Cloud's actual
+// pull request comment responses always carry `"type": "comment"`, never
+// "pullrequest_comment" - so a field/parameter typed as the generated
+// `PullrequestComment` class can never actually deserialize (Jackson
+// rejects "comment" as a type id for a `PullrequestComment`-typed value,
+// since `Comment` is the supertype, not a subtype). Point these PR-comment
+// endpoints at the base `comment` schema instead, which matches what the
+// API actually sends/expects and is all this client uses anyway.
+function repointCommentSchema(path, methods) {
+  const pathItem = spec.paths[path];
+  if (!pathItem) return;
+  for (const method of methods) {
+    const op = pathItem[method];
+    if (!op) continue;
+    const bodies = [];
+    if (op.requestBody) bodies.push(op.requestBody.content);
+    for (const response of Object.values(op.responses || {})) {
+      if (response.content) bodies.push(response.content);
+    }
+    for (const content of bodies) {
+      const schema = content && content["application/json"] && content["application/json"].schema;
+      if (schema && schema.$ref === "#/components/schemas/pullrequest_comment") {
+        schema.$ref = "#/components/schemas/comment";
+      }
+    }
+  }
+}
+if (
+  spec.components.schemas.paginated_pullrequest_comments &&
+  spec.components.schemas.paginated_pullrequest_comments.properties.values.items.$ref ===
+    "#/components/schemas/pullrequest_comment"
+) {
+  spec.components.schemas.paginated_pullrequest_comments.properties.values.items.$ref =
+    "#/components/schemas/comment";
+}
+repointCommentSchema(
+  "/repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments",
+  ["post"]
+);
+repointCommentSchema(
+  "/repositories/{workspace}/{repo_slug}/pullrequests/{pull_request_id}/comments/{comment_id}",
+  ["get", "put"]
+);
 
 fs.writeFileSync(specPath, JSON.stringify(spec, null, 2));

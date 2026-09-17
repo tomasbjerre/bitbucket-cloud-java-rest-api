@@ -3775,6 +3775,10 @@
         responses: 
           200: 
             description: "The raw diff"
+            content: 
+              text/plain: 
+                schema: 
+                  type: "string"
           555: 
             description: "If the diff was too large and timed out.\n\nSince this endpoint does not employ any form of pagination, but\ninstead returns the diff as a single document, it can run into\ntrouble on very large diffs. If Bitbucket times out in cases\nlike these, a 555 status code is returned."
             content: 
@@ -9176,7 +9180,7 @@
             content: 
               application/json: 
                 schema: 
-                  $ref: "#/components/schemas/pullrequest_comment"
+                  $ref: "#/components/schemas/comment"
           403: 
             description: "If the authenticated user does not have access to the pull request."
             content: 
@@ -9193,7 +9197,7 @@
           content: 
             application/json: 
               schema: 
-                $ref: "#/components/schemas/pullrequest_comment"
+                $ref: "#/components/schemas/comment"
           description: "The comment object."
           required: true
         security: 
@@ -9284,7 +9288,7 @@
             content: 
               application/json: 
                 schema: 
-                  $ref: "#/components/schemas/pullrequest_comment"
+                  $ref: "#/components/schemas/comment"
           403: 
             description: "If the authenticated user does not have access to the pull request."
             content: 
@@ -9325,7 +9329,7 @@
             content: 
               application/json: 
                 schema: 
-                  $ref: "#/components/schemas/pullrequest_comment"
+                  $ref: "#/components/schemas/comment"
           403: 
             description: "If the authenticated user does not have access to the comment."
             content: 
@@ -9342,7 +9346,7 @@
           content: 
             application/json: 
               schema: 
-                $ref: "#/components/schemas/pullrequest_comment"
+                $ref: "#/components/schemas/comment"
           description: "The contents of the updated comment."
           required: true
         security: 
@@ -9516,6 +9520,10 @@
         responses: 
           200: 
             description: "A paginated list of commits made on the given pull request, in chronological order. This list will be empty if the source branch no longer exists."
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/paginated_pullrequests_commits"
           403: 
             description: "If the authenticated user does not have access to the pull request."
             content: 
@@ -21661,7 +21669,7 @@
           values: 
             type: "array"
             items: 
-              $ref: "#/components/schemas/pullrequest_comment"
+              $ref: "#/components/schemas/comment"
             minItems: 0
             uniqueItems: true
         additionalProperties: false
@@ -23752,4 +23760,28 @@
             minItems: 0
             items: 
               $ref: "#/components/schemas/activity"
+      paginated_pullrequests_commits: 
+        type: "object"
+        properties: 
+          next: 
+            type: "string"
+            format: "uri"
+          pagelen: 
+            type: "integer"
+            minimum: 1
+          page: 
+            type: "integer"
+            minimum: 1
+          previous: 
+            type: "string"
+            format: "uri"
+          values: 
+            type: "array"
+            minItems: 0
+            uniqueItems: true
+            items: 
+              $ref: "#/components/schemas/commit"
+          size: 
+            type: "integer"
+            minimum: 0
 

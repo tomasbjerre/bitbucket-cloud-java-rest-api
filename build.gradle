@@ -133,20 +133,83 @@ tasks.register('fixCovariantReturnTypeConflicts') {
 	}
 }
 
-processTestResources.dependsOn 'fixCovariantReturnTypeConflicts'
-compileJava.dependsOn 'fixCovariantReturnTypeConflicts'
-compileGroovy.dependsOn 'fixCovariantReturnTypeConflicts'
+// Every model whose schema declares additionalProperties: true - ModelObject
+// (the common base every resource model extends for the polymorphic "type"
+// discriminator), but also standalone types like Diffstat/CommitFile that
+// declare it themselves - is generated as "extends HashMap<String, Object>".
+// Jackson 3 (tools.jackson) picks its MapDeserializer for any type assignable
+// to java.util.Map, regardless of @JsonFormat(shape = OBJECT): every JSON
+// property, including declared bean properties like Pullrequest's
+// "id"/"title" or Diffstat's "status", ends up routed through HashMap.put()
+// instead of the generated setters, so every typed getter silently reads
+// back null. (Confirmed by hand: switching a model to hold its extra
+// properties in a plain Map field instead of extending HashMap fixes
+// deserialization.) Rewrite every such model the same way, generically -
+// there's a growing list of them (17 as of this writing) and it's exactly
+// the shape the generator always emits for additionalProperties: true, so a
+// per-class transform is both correct and future-proof against new ones
+// appearing as the spec evolves.
+tasks.register('fixHashMapExtendingModels') {
+	dependsOn 'fixCovariantReturnTypeConflicts'
+	def genDir = "$rootDir/src/gen/java/se/bjurr/bitbucketcloud/gen/model"
+	inputs.dir(genDir)
+	outputs.dir(genDir)
+	doLast {
+		def classHeader = ~/(?m)^public class (\w+) extends HashMap<String, Object>(\s*)\{/
+		def anyGetter = ~/(?s)(@JsonAnyGetter\s*\R\s*public Map<String, Object> getAdditionalProperties\(\) \{\s*\R\s*)return this;/
+		def fixedAny = false
+		fileTree(dir: genDir, include: '**/*.java').each { targetFile ->
+			def text = targetFile.text
+			def headerMatcher = classHeader.matcher(text)
+			if (!headerMatcher.find()) {
+				return
+			}
+			fixedAny = true
+			def className = headerMatcher.group(1)
+			def spacing = headerMatcher.group(2)
+			text = headerMatcher.replaceFirst(
+					"public class ${className}${spacing}{\n  private final Map<String, Object> additionalProperties = new HashMap<>();"
+					)
+			text = text.replace("    super(\n    );\n", "")
+			def anyGetterMatcher = anyGetter.matcher(text)
+			if (!anyGetterMatcher.find()) {
+				throw new GradleException("Expected to find getAdditionalProperties() in ${targetFile} - has the generator output changed?")
+			}
+			text = anyGetterMatcher.replaceFirst('$1return this.additionalProperties;')
+			[
+				'this.put(key, value);'   : 'this.additionalProperties.put(key, value);',
+				'return this.get(key);'   : 'return this.additionalProperties.get(key);',
+				'super.equals(o);'        : "Objects.equals(this.additionalProperties, ((${className}) o).additionalProperties);",
+				'super.hashCode()'        : 'this.additionalProperties.hashCode()',
+				'super.toString()'        : 'this.additionalProperties.toString()',
+			].each { from, to ->
+				if (!text.contains(from)) {
+					throw new GradleException("Expected to find '${from}' in ${targetFile} - has the generator output changed?")
+				}
+				text = text.replace(from, to)
+			}
+			targetFile.text = text
+		}
+		if (!fixedAny) {
+			throw new GradleException("Expected at least one model extending HashMap<String, Object> in ${genDir} - has the generator output changed?")
+		}
+	}
+}
+
+processTestResources.dependsOn 'fixHashMapExtendingModels'
+compileJava.dependsOn 'fixHashMapExtendingModels'
+compileGroovy.dependsOn 'fixHashMapExtendingModels'
 
 afterEvaluate {
-	tasks.findByName("spotlessGroovyGradle")?.dependsOn("fixCovariantReturnTypeConflicts")
-	tasks.findByName("spotlessJava")?.dependsOn("fixCovariantReturnTypeConflicts")
-	tasks.findByName("spotlessJson")?.dependsOn("fixCovariantReturnTypeConflicts")
+	tasks.findByName("spotlessGroovyGradle")?.dependsOn("fixHashMapExtendingModels")
+	tasks.findByName("spotlessJava")?.dependsOn("fixHashMapExtendingModels")
+	tasks.findByName("spotlessJson")?.dependsOn("fixHashMapExtendingModels")
 }
 
 tasks.named("sourcesJar") {
-	dependsOn(tasks.named("fixCovariantReturnTypeConflicts"))
+	dependsOn(tasks.named("fixHashMapExtendingModels"))
 }
 
 tasks.named("javadocJar") {
-	dependsOn(tasks.named("fixCovariantReturnTypeConflicts"))
+	dependsOn(tasks.named("fixHashMapExtendingModels"))
 }
