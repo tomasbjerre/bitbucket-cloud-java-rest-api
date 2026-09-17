@@ -1,3 +1,21 @@
+## 3.2.0 (2026-09-17)
+
+### Features
+
+-  generate from the developer.atlassian.com OpenAPI v3 spec ([47551](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/475510394621516) Tomas Bjerre)  
+
+### Dependency updates
+
+- update plugin se.bjurr.gradle.bundle-jar to v2.3.0 (#2) ([edfb2](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/edfb268df2d7958) renovate[bot])  
+### Other changes
+
+**Merge pull request #1 from tomasbjerre/feat/openapi-v3-spec**
+
+* feat: generate from the developer.atlassian.com OpenAPI v3 spec 
+
+[6b4e0](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/6b4e0da6ae06c7b) Tomas Bjerre *2026-09-17 17:45:28*
+
+
 ## 3.1.0 (2026-09-14)
 
 ### Features
