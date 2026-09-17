@@ -37,6 +37,31 @@ openApiGenerate {
 	]
 }
 
+// se.bjurr.gradle.java's own generatedSourceFolders auto-detection (which
+// defaults to including src/gen/java) only wires up a folder that already
+// exists on disk *at project configuration time* - see its "if
+// (dir.asFile.exists())" check. On a clean checkout src/gen/java doesn't
+// exist yet (it's gitignored, only openApiGenerate creates it, and that's a
+// task, which only runs at execution time), so that check silently skips it
+// and compileJava ends up with NO-SOURCE - which is exactly what happened to
+// the 3.2.0 release, published with an empty jar.
+//
+// Wire it explicitly and unconditionally instead - srcDir() doesn't require
+// the directory to exist yet, it's resolved lazily when the compile task
+// actually runs. Use setSrcDirs() (replace), not srcDir() (append): CI runs
+// spotlessJavaCheck and build as two separate Gradle invocations, and by the
+// second one src/gen/java already exists on disk (left over from the
+// first), so se.bjurr.gradle.java's own conditional wiring *also* fires that
+// time - appending here would then register the directory twice and make
+// sourcesJar fail on duplicate entries.
+sourceSets {
+	main {
+		java {
+			setSrcDirs(["$rootDir/src/gen/java"])
+		}
+	}
+}
+
 // openapi-generator's jaxrs-spec generator hardcodes the Jackson 2
 // "com.fasterxml.jackson.databind.annotation.JsonDeserialize" import for Set
 // properties and has no option to target Jackson 3's "tools.jackson" package
