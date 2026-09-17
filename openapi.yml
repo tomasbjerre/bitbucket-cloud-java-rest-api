@@ -8959,6 +8959,10 @@
         responses: 
           200: 
             description: "The pull request activity log"
+            content: 
+              application/json: 
+                schema: 
+                  $ref: "#/components/schemas/paginated_activities"
           401: 
             description: "If the repository is private and the request was not authenticated."
           404: 
@@ -23723,4 +23727,29 @@
                 type: "string"
                 description: "The SSH key fingerprint in SHA-256 format."
             additionalProperties: true
+      activity: 
+        properties: 
+          comment: 
+            $ref: "#/components/schemas/comment"
+      paginated_activities: 
+        description: "A paged list of activities"
+        type: "object"
+        properties: 
+          page: 
+            type: "integer"
+          previous: 
+            type: "string"
+            format: "uri"
+          pagelen: 
+            type: "integer"
+          size: 
+            type: "integer"
+          next: 
+            type: "string"
+            format: "uri"
+          values: 
+            type: "array"
+            minItems: 0
+            items: 
+              $ref: "#/components/schemas/activity"
 
