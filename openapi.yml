@@ -23529,7 +23529,7 @@
             description: "A pullrequest comment task"
             properties: 
               comment: 
-                $ref: "#/components/schemas/comment"
+                $ref: "#/components/schemas/pullrequest_comment_task_comment_ref"
             additionalProperties: false
       branch: 
         allOf: 
@@ -23784,4 +23784,35 @@
           size: 
             type: "integer"
             minimum: 0
+      pullrequest_comment_task_comment_ref: 
+        type: "object"
+        title: "Pull Request Task Comment Reference"
+        description: "A minimal reference to the comment a pull request task is anchored to - its id and links only, without the \"type\" discriminator other comment representations carry."
+        properties: 
+          id: 
+            type: "integer"
+            format: "int64"
+          links: 
+            type: "object"
+            properties: 
+              self: 
+                type: "object"
+                title: "Link"
+                description: "A link to a resource related to this object."
+                properties: 
+                  href: 
+                    type: "string"
+                    format: "uri"
+                  name: 
+                    type: "string"
+              html: 
+                type: "object"
+                title: "Link"
+                description: "A link to a resource related to this object."
+                properties: 
+                  href: 
+                    type: "string"
+                    format: "uri"
+                  name: 
+                    type: "string"
 

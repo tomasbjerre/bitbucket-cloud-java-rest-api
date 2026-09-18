@@ -157,4 +157,57 @@ repointCommentSchema(
   ["get", "put"]
 );
 
+// pullrequest_comment_task.comment: Bitbucket Cloud's task responses embed the comment a task
+// is anchored to as a minimal, un-typed reference - just `id` and `links` (confirmed against a
+// real task on https://bitbucket.org/tomasbjerre/violations-test/pull-requests/1: {"id":
+// 865602816, "links": {"self": {...}, "html": {...}}} - no "type" at all). The spec points this
+// field at the full, abstract `comment` schema instead, which inherits a required `type` from
+// the shared `object` base (see the discriminator patch above) - a constraint no real response
+// for this field can ever satisfy. Generators that turn required properties into constructor
+// arguments (like jaxrs-spec here) then produce a model this field's real payload can never
+// construct, so it fails to deserialize at all. Give the field its own minimal schema matching
+// what's actually sent, instead of the full (and here, unsatisfiable) `comment` schema.
+if (spec.components.schemas.pullrequest_comment_task) {
+  spec.components.schemas.pullrequest_comment_task_comment_ref = {
+    type: "object",
+    title: "Pull Request Task Comment Reference",
+    description:
+      'A minimal reference to the comment a pull request task is anchored to - its id and links only, without the "type" discriminator other comment representations carry.',
+    properties: {
+      id: { type: "integer", format: "int64" },
+      links: {
+        type: "object",
+        properties: {
+          self: {
+            type: "object",
+            title: "Link",
+            description: "A link to a resource related to this object.",
+            properties: {
+              href: { type: "string", format: "uri" },
+              name: { type: "string" },
+            },
+          },
+          html: {
+            type: "object",
+            title: "Link",
+            description: "A link to a resource related to this object.",
+            properties: {
+              href: { type: "string", format: "uri" },
+              name: { type: "string" },
+            },
+          },
+        },
+      },
+    },
+  };
+  const objectPart = spec.components.schemas.pullrequest_comment_task.allOf.find(
+    (part) => part.properties && part.properties.comment
+  );
+  if (objectPart) {
+    objectPart.properties.comment = {
+      $ref: "#/components/schemas/pullrequest_comment_task_comment_ref",
+    };
+  }
+}
+
 fs.writeFileSync(specPath, JSON.stringify(spec, null, 2));
