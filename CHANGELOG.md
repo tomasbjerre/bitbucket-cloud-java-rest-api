@@ -1,3 +1,18 @@
+## 3.2.4 (2026-09-18)
+
+### Bug Fixes
+
+-  give a task's anchor comment its own minimal schema ([7f748](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/7f7481cde65e9ea) Tomas Bjerre)  
+
+### Other changes
+
+**Merge pull request #7 from tomasbjerre/fix/pullrequest-comment-task-comment-schema**
+
+* fix: give a task&#x27;s anchor comment its own minimal schema 
+
+[c1918](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/c191879202be446) Tomas Bjerre *2026-09-18 07:15:22*
+
+
 ## 3.2.3 (2026-09-17)
 
 ### Bug Fixes
