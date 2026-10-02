@@ -1,3 +1,8 @@
+## 3.2.6 (2026-10-02)
+
+### Dependency updates
+
+- gradle-conventions 2.4.3 ([f068d](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/f068d500d4762e9) Tomas Bjerre)  
 ## 3.2.4 (2026-09-18)
 
 ### Bug Fixes
