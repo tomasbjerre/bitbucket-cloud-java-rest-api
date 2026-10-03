@@ -1,3 +1,12 @@
+## 3.2.7 (2026-10-03)
+
+### Bug Fixes
+
+-  remove literal quotes from gradle.properties description ([309a0](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/309a0be438c66a3) Tomas Bjerre)  
+
+### Dependency updates
+
+- update plugin se.bjurr.gradle.bundle-jar to v2.4.4 (#11) ([d84a7](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/d84a7c5931ab086) renovate[bot])  
 ## 3.2.6 (2026-10-02)
 
 ### Dependency updates
