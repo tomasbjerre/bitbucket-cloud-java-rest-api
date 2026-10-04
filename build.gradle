@@ -15,7 +15,7 @@ dependencies {
 	api 'io.swagger:swagger-annotations:1.6.16'
 	api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
 	api "tools.jackson.jaxrs:jackson-jaxrs-json-provider:3.2.3"
-	api "org.openapitools:jackson-databind-nullable:0.2.11"
+	api "org.openapitools:jackson-databind-nullable:0.2.12"
 	api 'jakarta.validation:jakarta.validation-api:3.1.1'
 	api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
