@@ -1,3 +1,13 @@
+## 3.2.8 (2026-10-30)
+
+### Dependency updates
+
+- update dependency org.openapitools:jackson-databind-nullable to v0.2.13 (#18) ([2e563](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/2e563e5f97aefa0) renovate[bot])  
+- update dependency gradle to v9.8.2 (#16) ([0f3cf](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/0f3cf18b6fab7e6) renovate[bot])  
+- update dependency tools.jackson.jaxrs:jackson-jaxrs-json-provider to v3.2.4 (#17) ([5c201](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/5c2015c3b91a5b6) renovate[bot])  
+- update plugin org.openapi.generator to v7.26.0 (#13) ([fd7ae](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/fd7aeecb367784f) renovate[bot])  
+- update dependency gradle to v9.8.1 (#15) ([0c91b](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/0c91b90c5296abc) renovate[bot])  
+- update dependency org.openapitools:jackson-databind-nullable to v0.2.12 (#12) ([9272b](https://github.com/tomasbjerre/bitbucket-cloud-java-rest-api/commit/9272b14923ed8c6) renovate[bot])  
 ## 3.2.7 (2026-10-03)
 
 ### Bug Fixes
