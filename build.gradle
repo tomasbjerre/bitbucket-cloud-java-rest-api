@@ -12,7 +12,7 @@ formatting {
 }
 
 dependencies {
-	api 'io.swagger:swagger-annotations:1.6.16'
+	api 'io.swagger:swagger-annotations:1.6.17'
 	api 'jakarta.ws.rs:jakarta.ws.rs-api:4.0.0'
 	api "tools.jackson.jaxrs:jackson-jaxrs-json-provider:3.3.0"
 	api "org.openapitools:jackson-databind-nullable:0.2.13"
